@@ -1,0 +1,23 @@
+{% extends 'tweets/base.html' %}
+
+{% block content %}
+    Welcome on tweetme
+{% endblock content %}
+
+<div id = tweets>
+    loading......
+</div>
+<script>
+    const xhr = XMLHttpRequest()
+    const method = 'GET'// "POST"
+    const url = "/tweets"
+    const responseType = "json"
+
+    xhr.responseType = responseType
+    xhr.open(method,url)
+    xhr.onload = function(){
+        console.log(xhr.response)
+
+    }
+    xhr.send()
+</script>

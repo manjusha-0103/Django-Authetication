@@ -1,0 +1,10 @@
+# GraphQL User registration and authentication with jwt backend
+    * installation :
+        $ pip3 install graphene-django
+        $ pip3 install django-graphql-jwt
+        $ pip3 freeze > requirements.txt
+
+# super user
+    email : code@django.com
+    pass : code@0103
+    username : code@.com
