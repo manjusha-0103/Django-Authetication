@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from  django.http import HttpResponse,Http404,JsonResponse
-from .models import Tweets
+from .models import Twits
 
 # Create your views here.
 
@@ -9,22 +9,22 @@ def home(request,*args,**kwargs):
     #return HttpResponse("<h1>hello world </h1>")
     return render(request,'pages/home.html',context={},status=200)
 
-def tweet_list_view(request):
-    tweet_obj = Tweets.objects.all()
+def twit_list_view(request):
+    tweet_obj = Twits.objects.all()
     lst = [{"id ": x.id,"content": x.content} for x in tweet_obj]
     data ={
         "response" : lst
     }
     return JsonResponse(data)
 
-def tweet_detail_view(request,tweet_id ,*args,**kwargs):
+def twit_detail_view(request,twit_id ,*args,**kwargs):
     data = {
-        "id": tweet_id,
+        "id": twit_id,
         # "image_path" : obj.image.url
     }
     status = 200
     try:
-        obj = Tweets.objects.get(id=tweet_id)
+        obj = Twits.objects.get(id=twit_id)
         data["content"]= obj.content
     except:
         #raise Http404

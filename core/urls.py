@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tweets.views import home,tweet_detail_view,tweet_list_view
+from twits.views import home,twit_list_view,twit_detail_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('tweets/',tweet_list_view),
-    path('tweets/<int:tweet_id>',tweet_detail_view)
+    path('twits/',twit_list_view),
+    path('twits/<int:twit_id>',twit_detail_view)
+    
 ]

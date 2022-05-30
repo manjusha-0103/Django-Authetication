@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
-    'tweets',
+    'twits',
     #'graphene-django',
-    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    #'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.ExtendUser'
-GRAPHENE = {
+'''GRAPHENE = {
     'SCHEMA : users.schema.schema'
     'MIDDLEWARE' : 'graphql_jwt'
-}
+}'''
