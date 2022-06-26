@@ -8,3 +8,26 @@
     email : code@django.com
     pass : code@0103
     username : code@.com
+
+Username: mgk
+Email: mgkcode@gmail.com
+Password: code@0103
+
+Username: mgkco
+Email: mgk@gmail.com
+Password: pass@0103
+
+# if error is
+    OperationalError at /admin/ no such table: auth_user
+    solution :
+        We have to remove all migrations from our project by
+            1.find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+            2.find . -path "*/migrations/*.pyc"  -delete
+            3.Then delete the database.Then run migrations & migrate again.
+                python manage.py makemigrations 
+                python manage.py migrate
+
+            4.then delete contents in db.sqlite3 file    
+
+
+

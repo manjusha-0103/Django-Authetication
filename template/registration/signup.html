@@ -1,0 +1,27 @@
+{% extends 'twits/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+        
+			<div class="signup">
+				<form action = "signup" method = "post" >
+                    {% csrf_token %}
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="username" placeholder="User name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd1" placeholder="Password" required="">
+                    <input type="password" name="pswd2" placeholder="Confirm the password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
+</body>
+</html>
