@@ -10,8 +10,9 @@ def home(request,*args,**kwargs):
     return render(request,'pages/home.html',context={},status=200)
 
 def twit_list_view(request):
-    tweet_obj = Twits.objects.all()
-    lst = [{"id ": x.id,"content": x.content} for x in tweet_obj]
+    twit_obj = Twits.objects.all()
+    print(twit_obj)
+    lst = [{"id ": x.id,"content": x.content} for x in twit_obj]
     data ={
         "response" : lst
     }
