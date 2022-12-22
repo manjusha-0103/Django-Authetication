@@ -5,7 +5,7 @@ from .models import Twits
 # Create your views here.
 
 def home(request,*args,**kwargs):
-    print(args,kwargs)
+    print(request,args,kwargs)
     #return HttpResponse("<h1>hello world </h1>")
     return render(request,'pages/home.html',context={},status=200)
 

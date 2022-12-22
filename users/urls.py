@@ -1,11 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import reset_password
 urlpatterns =[
-<<<<<<< HEAD
-    
-=======
-    path()
+    #path('reset/',reset_password ,name = "reset_password"),
 
->>>>>>> origin
 ]
