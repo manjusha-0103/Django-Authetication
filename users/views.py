@@ -1,4 +1,3 @@
-
 #from sre_constants import SUCCESS
 from email import message
 from django.conf import settings
@@ -8,11 +7,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.db import IntegrityError, models, router, transaction
-from . forms import Registerform
+#from . forms import Registerform
+from django.views.generic.edit import DeleteView
 
-
-
-# Create your views here.
 
 def register(response):
     if response.method == "POST" :
@@ -34,7 +31,74 @@ def register(response):
         messages.success(response,"You have successfully registered.")
         return redirect('login')
       
-    return render(response,'registration/registration.html')
+    return render(response,'account/registration.html')
+    
+
+def login_view(request):
+    if request.method == "POST" :
+        username  = request.POST.get('username')
+        password = request.POST.get('password1')
+        print(username)
+        _user = authenticate(username = username ,password = password)
+        print(_user)
+        if _user is not None :
+            login(request,_user)
+            messages.success(request,"You have logged in successfully .......")
+            return redirect('home')
+        else :
+            messages.error(request,"Wrong credentials")    
+            return redirect('login')
+    return render(request,'account/login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.success(request,"You have successfully logout!")
+    #return redirect("logout")
+        
+    return render(request,"account/signout/signout.html")    
+
+def delete_account(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('pswd1')
+        
+        #u = User.objects.filter(password=password).first()
+        u = authenticate(username=username,password=password)
+        print(u)  
+        if u:
+            u.delete()
+            messages.success(request,"Account is deleted successfully.....")
+            return redirect('home')
+        else:
+            messages.error(request,"Enter the correct data")
+            return redirect('delete')    
+        
+    return render(request,"account/delete_profile.html")
+    '''
+
+    user = User.objects.get(id= user.pk)
+    # You first logout the user then delete the account
+    logout(request)
+    # You can use either of these
+    # To Soft Delete
+    user.active = False
+    user.save()
+    # To Hard Delete
+    user.delete()
+    messages.success(request,"You account has been deleted Successfully!")
+    return redirect('home')
+    #model = User
+    '''
+    
+def reset_password(request):
+    if request.method == "POST":
+        reset_pass = request.POst.get("password")
+        User.password = reset_pass
+        messages.success(request,"Password is reset")
+    return render(request,"template/account/reset_pass.html")  
+
+"""
+def register(request):
     '''if response.method == "POST":
         form = Registerform(response.POST)
         if form.is_valid():
@@ -55,23 +119,8 @@ def register(response):
 
         return render(response,"registration/registration.html",{"form" : form})'''
 
-def login_view(request):
-    if request.method == "POST" :
-        username  = request.POST.get('username')
-        password = request.POST.get('password1')
-        print(username)
-        _user = authenticate(username = username ,password = password)
-        print(_user)
-        if _user is not None :
-            login(request,_user)
-            messages.success(request,"You have logged in successfully .......")
-            return redirect('home')
-        else :
-            messages.error(request,"Wrong credentials")    
-            return redirect('login')
-    return render(request,'registration/login.html')
-
-    '''if request.method == 'POST':
+def login_view(request) :
+        '''if request.method == 'POST':
         username  = request.POST.get('username')
         password = request.POST.get('password1')
         user = authenticate(request,usernmae = username ,password = password)
@@ -85,14 +134,8 @@ def login_view(request):
     else :            
         return render(request,"registration/login.html")'''
 
-def logout_view(request):
-    logout(request)
-    messages.success(request,"You have successfully logout!")
-    #return redirect("logout")
-        
-    return render(request,"registration/signout/signout.html")    
+def         
 
-def reset_password(request):
-    '''if request.method == "POST":
-        reset_pass = request.get()'''
-    return render(request,"template/registration/reset_pass.html")     
+
+"""
+      

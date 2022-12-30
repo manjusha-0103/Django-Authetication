@@ -40,9 +40,10 @@
 			<button>Sign up</button>
             
         {% for message in messages %}
-            <script>
-                alert('{{message}}');
-            </script>
+
+            
+            <p>{{message}}</p>
+            <p>Let's <a href = "{% url 'login' %}">Login</a> here......</p>
                 
         {% endfor %}
     </form>

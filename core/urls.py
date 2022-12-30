@@ -17,7 +17,7 @@ from django import urls
 from django.contrib import admin
 from django.urls import path,include
 from twits.views import home,twit_list_view,twit_detail_view
-from users.views import register, logout_view, login_view,reset_password
+from users.views import register, logout_view, login_view,reset_password,delete_account
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home ,name = "home"),
@@ -26,9 +26,9 @@ urlpatterns = [
     #path('user/',include('users.urls')),
     #path('',include('django.contrib.auth.urls')),
    
-    path('register/',register,name='register'),
+    path('register/',register,name="register"),
     path('login/',login_view,name = "login"),
     path('reset/',reset_password ,name = "reset_password"),
     path('logout/',logout_view ,name = "logout"),   
-      
+    path('delete_account/',delete_account ,name = "delete"),
 ]

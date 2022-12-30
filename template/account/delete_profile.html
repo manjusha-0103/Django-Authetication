@@ -1,0 +1,32 @@
+{% extends "twits/base.html" %}
+
+{% block tuitle%} Delete Account {% endblock %}
+
+{%  block content %} 
+<div class="container">
+    
+    <form action="{% url 'delete' %}" method="post"> 
+        {% csrf_token %}
+
+    
+        <label for="chk" aria-hidden="true">Delete Acount</label>
+			
+			<!--<input type="email" name="email" placeholder="Email" required="">
+            <input type="text" name="username" placeholder="username" required="">
+			<input type="password" name="pswd1" placeholder="Password" required="">
+            -->
+			<button>Delete</button>
+            
+        {% for message in messages %}
+           
+            
+            <p>{{message}}</p>
+            
+            <p>Forget password, <a href="#">reset </a>here..</p>
+
+                
+        {% endfor %}
+    </form>
+</div>
+
+{% endblock %}
