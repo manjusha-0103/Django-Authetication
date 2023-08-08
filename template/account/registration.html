@@ -1,6 +1,6 @@
 {% extends "twits/base.html" %}
 
-{% block tuitle%} Create Account {% endblock %}
+{% block title%} Create Account {% endblock %}
 
 {%  block content %} 
 <div class="container">
@@ -32,18 +32,19 @@
             <input class="btn btn-primary" type="submit" value="Submit">
          
         </div> --->
+        
         <label for="chk" aria-hidden="true">Sign up</label>
-			<input type="text" name="username" placeholder="User name" required="">
+			<!--<input type="text" name="username" placeholder="User name" required="">-->
 			<input type="email" name="email" placeholder="Email" required="">
 			<input type="password" name="pswd1" placeholder="Password" required="">
             <input type="password" name="pswd2" placeholder="Confirm the password" required="">
 			<button>Sign up</button>
             
         {% for message in messages %}
-
-            
-            <p>{{message}}</p>
-            <p>Let's <a href = "{% url 'login' %}">Login</a> here......</p>
+            <script>
+                alert({message});
+            </script>
+            <!--<p>Let's <a href = "{% url 'login' %}">Login</a> here......</p>-->
                 
         {% endfor %}
     </form>

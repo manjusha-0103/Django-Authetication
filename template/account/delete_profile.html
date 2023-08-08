@@ -17,15 +17,15 @@
             -->
 			<button>Delete</button>
             
-        {% for message in messages %}
+        
            
             
             <p>{{message}}</p>
             
-            <p>Forget password, <a href="#">reset </a>here..</p>
+            <p>Forget password, <a href="{% url 'reset_password' %}">reset </a>here..</p>
 
                 
-        {% endfor %}
+        
     </form>
 </div>
 

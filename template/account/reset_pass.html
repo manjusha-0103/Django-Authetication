@@ -1,4 +1,4 @@
-{% extends 'registration/reset_pass.html' %}
+{% extends 'twits/base.html' %}
 
 {% block tile  %}
 	Login Here 
@@ -7,20 +7,38 @@
 {%  block content %}
 
 	<div class="login">
-		<form method = "post" class = "form-group" action = "reset">
+		<form action="{% url 'reset_password' %}" method="post" style="margin-left: 5%;">
 			{% csrf_token %}
 			
 			<div class="form-group">
-				<label>Reset Password : </label>
-				<input type ="password" value = '{{ form.password1 }}'>
+				<label for="email">Email</label>
+				<input type="email" name="email" placeholder="Email" required="">
+			
+			</div>
+			<div class="form-group">
+				<label for="email">New Password</label>
+				<input type="password" name="pswd1" placeholder="Password" required="">
+            
 			</div>
             <div class="form-group">
-				<label>Confirm Password : </label>
-				<input type ="password" value = '{{ form.password1 }}'>
+				<label for="email">Confirm Password</label>
+				<input type="password" name="pswd2" placeholder="Confirm the password" required="">
+				
 			</div>
 			
-			<button class="btn btn-success" type="submit">signin</button>
+			<button onclick = ""class="btn btn-success" type="submit">Reset Password</button>
+			
+			
 		</form>
+		{% for message in messages %}
+			<script>
+				alert({message})
+			</script>
+				<!--<p>Let's <a href = "{% url 'login' %}">Login</a> here......</p>-->
+			
+		{% endfor %}
+		
+
 	</div>
 
 {% endblock%}	

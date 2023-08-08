@@ -10,31 +10,38 @@
 		<form action="" method ="post">
 			{% csrf_token %}
 			<div class="form-group" style = 'margin-top: 20px;'>
-				<label>Username</label><br>
-				<input type="text" name = "username"value = "{{form.username}}" placeholder = "Username" required>
+				<label>Email</label><br>
+				<input type="text" name = "username"value = "{{form.username}}" placeholder = "Email" required>
 			</div>
 			<div class="form-group" style = 'margin-top: 20px;'>
 				<label>Password</label><br>
 				
 				<input type="password" name = "password1" value = "{{form.password1}}" placeholder = "password" required>
 			</div>
-			<p>Forget password, <a href="#">reset </a>here..</p>
+			
 			<div class="form-group">
 				<input class="btn btn-primary" type="submit" value="Login">
 				
 			</div>
+			<p>Forget password, <a href="{% url 'reset_password' %}">reset </a>here..</p>
 			<p>Don't have an account, <a href="{% url 'register' %}">create </a>one here..</p>
 			
 					
 			{% else %}
 				{% csrf_token %}	
-				{% for message in messages %}
+				
 					{{message}}
 
-				{% endfor %}		
-			{% endif %}
+						
+				{% endif %}
 			
 		</form>
+		{% for message in messages %}
+			<script>
+				alert({message})
+			</script>
+
+		{% endfor %}
 
 	</div>	
 

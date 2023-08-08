@@ -17,6 +17,10 @@ Username: mgkco
 Email: mgk@gmail.com
 Password: pass@0103
 
+Username: me
+Email address: me@gmail.com
+Password: 12345
+
 # if error is
     OperationalError at /admin/ no such table: auth_user
     solution :

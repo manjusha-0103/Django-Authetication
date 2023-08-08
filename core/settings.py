@@ -132,3 +132,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     'SCHEMA : users.schema.schema'
     'MIDDLEWARE' : 'graphql_jwt'
 }'''
+
+
+### Gmail Setting
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'manjushakatkhede96@gmail.com'
+SMTP_HOST_USER = 'manjushakatkhede96@gmail.com'
+EMAIL_HOST_PASSWORD = "nksvabgjhhmivtll"
+SMTP_HOST_PASSWORD = "nksvabgjhhmivtll"
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#AUTH_USER_MODEL = 'users.User'

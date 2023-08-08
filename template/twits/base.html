@@ -36,48 +36,84 @@
     <div style = "float: right;background-color: blueviolet; width : 100%">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Account
-                      </a>
-                          
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="{% url 'login' %}">signin</a>
-                          <a class="dropdown-item" href="/register">signup</a>
-                          <a class="dropdown-item" href="{% url 'logout' %}">signout</a>
-                          <a class="dropdown-item" href="{% url 'delete' %}" >Delete Account</a>
-                      </div>
-                    </li> 
-    
-                </ul>
-   
-            </div>
-            <div style = "width: 50%;float: right;">
-              <form class="form-inline my-2 my-lg-0"  >
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
+            
             {% if user.is_authenticated %}
-              
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">About</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                            
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'login' %}">signin</a>
+                            <a class="dropdown-item" href="/register">signup</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">signout</a>
+                            <a class="dropdown-item" href="{% url 'delete' %}" >Delete Account</a>
+                        </div>
+                      </li> 
+      
+                  </ul>
+    
+              </div>
+              <div style = "width: 50%;float: right;">
+                <form class="form-inline my-2 my-lg-0"  >
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
               
               <div style = "margin-left: 20px;">
-                <h3>Hello,{{user.username}}</h3>
+                <h6>Hello,{{user.username}}</h6>
                 <p><a href = "#">Profile</a></p>
                 
               </div>
+            {% else %}
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">About</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                            
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'login' %}">signin</a>
+                            <a class="dropdown-item" href="/register">signup</a>
+                            <!--<a class="dropdown-item" href="{% url 'logout' %}">signout</a>
+                            <a class="dropdown-item" href="{% url 'delete' %}" >Delete Account</a>-->
+                        </div>
+                      </li> 
+      
+                  </ul>
+    
+              </div>
+              <div style = "width: 50%;float: right;">
+                <form class="form-inline my-2 my-lg-0"  >
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+
             {% endif %}
                 
             </nav>    

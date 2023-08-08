@@ -9,16 +9,19 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError, models, router, transaction
 #from . forms import Registerform
 from django.views.generic.edit import DeleteView
+from django.core.mail import send_mail, BadHeaderError
+from core.settings import EMAIL_HOST_USER
 
 
 def register(response):
     if response.method == "POST" :
-        username = response.POST["username"]
+        #username = response.POST["username"]
         email = response.POST["email"]
         password1 = response.POST["pswd1"]
         password2 = response.POST["pswd2"]
 
-        try:    
+        try:  
+            username = email.split('@')[0]  
             myuser = User.objects.create_user(username, email, password1)
             myuser.password2 = password2
         
@@ -26,9 +29,10 @@ def register(response):
             #if myuser.objects.filter :
             if len(username) >10:
                 messages.error(response,"Username should contain at most 10 characters.")
+            messages.success(response,"You have successfully registered.")
         except IntegrityError:
             pass
-        messages.success(response,"You have successfully registered.")
+        
         return redirect('login')
       
     return render(response,'account/registration.html')
@@ -36,8 +40,9 @@ def register(response):
 
 def login_view(request):
     if request.method == "POST" :
-        username  = request.POST.get('username')
+        email  = request.POST.get('username')
         password = request.POST.get('password1')
+        username = email.split('@')[0]  
         print(username)
         _user = authenticate(username = username ,password = password)
         print(_user)
@@ -59,9 +64,9 @@ def logout_view(request):
 
 def delete_account(request):
     if request.method == "POST":
-        username = request.POST.get('username')
+        email = request.POST.get('username')
         password = request.POST.get('pswd1')
-        
+        username = email.split('@')[0]  
         #u = User.objects.filter(password=password).first()
         u = authenticate(username=username,password=password)
         print(u)  
@@ -92,10 +97,34 @@ def delete_account(request):
     
 def reset_password(request):
     if request.method == "POST":
-        reset_pass = request.POst.get("password")
-        User.password = reset_pass
-        messages.success(request,"Password is reset")
-    return render(request,"template/account/reset_pass.html")  
+        email = request.POST.get("email")
+        reset_pass = request.POST.get("password1")
+        confirm_pass = request.POST.get("password2")
+        if reset_pass == confirm_pass:
+            username = email.split('@')[0]  
+            exist = User.objects.filter(username = username)
+            print(exist)
+            if exist:
+                user = User.objects.get(username = username)
+                print(user)
+                user.set_password(str(confirm_pass))
+                user.save()
+                
+                
+                messages.success(request,"Password is reset")
+                subject = "tweetme.com||Success change password"
+                message = f"""This mail is from tweetme.com.
+You have successfully changed the password of gmail account {email}.
+HAVE NICE DAY!!! :)
+                """
+                send_mail(subject,message,EMAIL_HOST_USER,[email])
+                return redirect('login') 
+            else:
+                messages.error(request,"You don't have account")
+                return  redirect('reset_password')
+           
+
+    return render(request,'account/reset_pass.html')   
 
 """
 def register(request):
